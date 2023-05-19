@@ -15,3 +15,6 @@ DB_PASSWORD=password
 3. Go to http://localhost:8000/consultants where you will be redirected to login page. Login with admin6@gmail.com and password 123456 or create new user from registration.
 
 Calendar page: http://localhost:8000/consultants
+
+<img width="1540" alt="Screenshot 2023-05-19 at 2 16 49 PM" src="https://github.com/cornelradu/php-consultants-app/assets/3815479/ec6365d3-9a6c-412e-9b93-eedb0350be72">
+
