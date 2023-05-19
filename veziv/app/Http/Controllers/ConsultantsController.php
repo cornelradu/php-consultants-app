@@ -93,6 +93,13 @@ class ConsultantsController extends Controller
         return False;
     }
 
+    private static function dateInThePast($strtime, $hours){
+        $times = explode(":", $hours);
+        $time = intval($times[0]) * 60 + intval($times[1]);
+  
+        return time() > strtotime($strtime) + $time * 60;
+    }
+
     public function CreateNewAppointment(Request $request)
     {
         $call_result = array();
@@ -104,6 +111,10 @@ class ConsultantsController extends Controller
                 ->whereRaw('date(timestamp) = ? and consultant_id = ?', [$payload['date'], $payload['consultant_id']])
                 ->get();
         
+
+        if(ConsultantsController::dateInThePast($payload['date'], $payload['time'])==True){
+            $call_result['error'] = "Appointments can't be made for past dates.";
+        }  
 
         if(ConsultantsController::dateInInterval($payload['date'])==False){
             $call_result['error'] = "Appointments can only be made from Monday to Friday.";
